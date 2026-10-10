@@ -264,6 +264,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
         statusItem.button?.image = defaultMenuBarIcon
     }
 
+    func popoverDidShow(_ notification: Notification) {
+        popover.contentViewController?.view.window?.level = NSWindow.Level(rawValue: 19)
+    }
+
     private func startClickOutsideMonitor() {
         clickOutsideMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in
             if self?.popover.isShown == true {
